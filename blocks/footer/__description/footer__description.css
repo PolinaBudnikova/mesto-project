@@ -1,0 +1,16 @@
+.footer__description {
+    margin: 0 auto;
+    padding: 48px 19px 36px;
+    color: #545454;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (min-width: 1280px) {
+    .footer__description {
+        font-size: 18px;
+        line-height: 22px;
+        padding: 66px 0 60px 0;
+    }
+}
