@@ -6,4 +6,4 @@
 * позиционирование (в блоке popup);
 * анимации, которые делают полупрозрачными кнопки при наведении мыши;
 
-[Ссылка на GitHub Pages]()
+[Ссылка на GitHub Pages](https://polinabudnikova.github.io/mesto-project/)
