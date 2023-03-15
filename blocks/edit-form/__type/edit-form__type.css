@@ -1,0 +1,7 @@
+.edit-form__type {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    gap: 30px;
+}

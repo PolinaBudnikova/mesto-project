@@ -1,0 +1,22 @@
+.cards__button-like {
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: transparent;
+    background: none;
+    width: 22px;
+    height: 19px;
+    background-size: 100% 100%;
+    background-image: url(../../../images/Vector.svg);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.cards__button-like:hover {
+    opacity: 0.5;
+}
+
+.cards__button-like:active {
+    background-image: url(../../../images/Union.svg);
+    opacity: 1;
+}
