@@ -19,58 +19,58 @@
             <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button button-active"></button>
+                <button type="button" aria-label="Редактировать" class="profile__edit-button button-active"></button>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-            <button class="profile__add-button button-active"></button>
+            <button type="button" aria-label="Добавить" class="profile__add-button button-active"></button>
         </section>
 
         <section class="cards">
             <div class="cards__item">
                 <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
                 <div class="cards__description">
-                    <p class="cards__info">Карачаевск</p>
-                    <button class="cards__button-like"></button>
+                    <h2 class="cards__info">Карачаевск</h2>
+                    <button type="button" aria-label="Лайк" class="cards__button-like"></button>
                 </div>
             </div>
 
             <div class="cards__item">
                 <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус">
                 <div class="cards__description">
-                    <p class="cards__info">Гора Эльбрус</p>
-                    <button class="cards__button-like"></button>
+                    <h2 class="cards__info">Гора Эльбрус</h2>
+                    <button type="button" aria-label="Лайк" class="cards__button-like"></button>
                 </div>
             </div>
 
             <div class="cards__item">
                 <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай">
                 <div class="cards__description">
-                    <p class="cards__info">Домбай</p>
-                    <button class="cards__button-like"></button>
+                    <h2 class="cards__info">Домбай</h2>
+                    <button type="button" aria-label="Лайк" class="cards__button-like"></button>
                 </div>
             </div>
 
             <div class="cards__item">
                 <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
                 <div class="cards__description">
-                    <p class="cards__info">Карачаевск</p>
-                    <button class="cards__button-like"></button>
+                    <h2 class="cards__info">Карачаевск</h2>
+                    <button type="button" aria-label="Лайк" class="cards__button-like"></button>
                 </div>
             </div>
 
             <div class="cards__item">
                 <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус">
                 <div class="cards__description">
-                    <p class="cards__info">Гора Эльбрус</p>
-                    <button class="cards__button-like"></button>
+                    <h2 class="cards__info">Гора Эльбрус</h2>
+                    <button type="button" aria-label="Лайк" class="cards__button-like"></button>
                 </div>
             </div>
 
             <div class="cards__item">
                 <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай">
                 <div class="cards__description">
-                    <p class="cards__info">Домбай</p>
-                    <button class="cards__button-like"></button>
+                    <h2 class="cards__info">Домбай</h2>
+                    <button type="button" aria-label="Лайк" class="cards__button-like"></button>
                 </div>
             </div>
         </section>
@@ -82,14 +82,14 @@
 
     <section class="popup popup_opened">
         <div class="popup__container">
-            <button class="popup__close-button button-active"></button>
+            <button type="button" aria-label="Закрыть" class="popup__close-button button-active"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="edit-form">
+            <form class="edit-form" name="edit-form">
                 <fieldset class="edit-form__type">
-                    <input type="text" class="edit-form__input" name="firstname" value="Жак-Ив Кусто">
-                    <input type="text" class="edit-form__input" value="Исследователь океана">
+                    <input type="text" class="edit-form__input" name="firstname" value="Жак-Ив Кусто" placeholder="Введите имя" required>
+                    <input type="text" class="edit-form__input" name="description" value="Исследователь океана" placeholder="Введите описание" required>
                 </fieldset>
-                <button class="edit-form__save-button">Сохранить</button>
+                <button type="button" aria-label="Сохранить" class="edit-form__save-button">Сохранить</button>
             </form>
         </div>
     </section>
