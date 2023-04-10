@@ -1,30 +1,39 @@
-function getEl(selector) {
-    return document.querySelector(selector)
+// функция поиска элемента
+function getEl(selector, where = document) {
+    return where.querySelector(selector);
 }
 
+// попапы
 const popupEdit = getEl('.popup_edit')
 const popupAdd = getEl('.popup_add')
 const popupPicture = getEl('.popup_picture')
-const editBtnEl = getEl('.profile__edit-button')
-const closeBtnElEdit = getEl('.popup__close-button_edit')
-const closeBtnElAdd = getEl('.popup__close-button_add')
-const closeBtnPicture = getEl('.popup__close-button_picture')
-const editFormEl = getEl('[name=edit-form]')
-const addFormEl = getEl('[name=new-place-form]')
-const nameInput = getEl('[name=firstname]')
-const jobInput = getEl('[name=description]')
-const namePictureInput = getEl('[name=nameofpicture]')
-const linkPictureInput = getEl('[name=linkofpicture]')
+const popupPictureName = getEl('.popup__picture-name', popupPicture)
+const popupPictureImage = getEl('.popup__image', popupPicture)
+// формы
+const profileForm = document.forms['edit-form']
+const placeForm = document.forms['new-place-form']
+// инпуты
+const inputName = getEl('[name=firstname]')
+const inputJob = getEl('[name=description]')
+const inputPictureName = getEl('[name=nameofpicture]')
+const inputPictureLink = getEl('[name=linkofpicture]')
+// кнопки
+const profileEditBtn = getEl('.profile__edit-button')
+const profileCloseBtn = getEl('.popup__close-button_edit')
+const placeAddbtn = getEl('.profile__add-button')
+const placeCloseBtn = getEl('.popup__close-button_add')
+const pictureCloseBtn = getEl('.popup__close-button_picture')
+// данные профиля
 const profileName = getEl('.profile__name')
 const profileDescription = getEl('.profile__description')
+// карточка
 const cardsList = getEl('.cards')
 const cardTemplate = getEl('.card_template').content
-const newPlaceBtnEl = getEl('.profile__add-button')
 
 // уравниваем новые значение имени, описания с введенными 
-function setInputsValue() {
-    nameInput.value = profileName.textContent
-    jobInput.value = profileDescription.textContent
+function fillProfileInputs() {
+    inputName.value = profileName.textContent
+    inputJob.value = profileDescription.textContent
 }
 
 // функция открытия и закрытия у popup
@@ -37,53 +46,53 @@ function closePopup(popup) {
 }
 
 // при клике на кнопку редактировать - открыть popup
-editBtnEl.addEventListener('click', function () {
+profileEditBtn.addEventListener('click', function () {
     openPopup(popupEdit)
-    setInputsValue()
+    fillProfileInputs()
 })
 
 // при клике на кнопку редактировать - закрыть popup
-closeBtnElEdit.addEventListener('click', function () {
+profileCloseBtn.addEventListener('click', function () {
     closePopup(popupEdit)
 })
 
 // при клике на кнопку добавить место - открыть popup
-newPlaceBtnEl.addEventListener('click', function () {
+placeAddbtn.addEventListener('click', function () {
     openPopup(popupAdd)
 })
 
 // при клике на кнопку закрыть - закрыть popup
-closeBtnElAdd.addEventListener('click', function () {
+placeCloseBtn.addEventListener('click', function () {
     closePopup(popupAdd)
 })
 
-closeBtnPicture.addEventListener('click', function () {
+pictureCloseBtn.addEventListener('click', function () {
     closePopup(popupPicture)
 })
 
 // меняем значение value у input
 function changeValue() {
-    profileName.textContent = nameInput.value
-    profileDescription.textContent = jobInput.value
+    profileName.textContent = inputName.value
+    profileDescription.textContent = inputJob.value
 }
 
 // закрытие popup+изменение значение value при нажатии на кнопку сохранить
-function editProfileHandler(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault()
     changeValue()
     closePopup(popupEdit)
 }
 
 // слушатель редактирования профиля
-editFormEl.addEventListener('submit', editProfileHandler)
+profileForm.addEventListener('submit', handleProfileFormSubmit)
 
 // слушатель добавления новой карточки
-addFormEl.addEventListener('submit', function (evt) {
+placeForm.addEventListener('submit', function (evt) {
     evt.preventDefault()
     // получить значения импутов
     const newCard = {
-        name: namePictureInput.value,
-        link: linkPictureInput.value
+        name: inputPictureName.value,
+        link: inputPictureLink.value
     }
 
     // добавляем функцию создания новой карточки
@@ -91,7 +100,7 @@ addFormEl.addEventListener('submit', function (evt) {
 
     // выносим новую карточку к началу списка
     cardsList.prepend(cardEl)
-
+    evt.target.reset()
     // закрываем popup
     closePopup(popupAdd)
 })
@@ -132,25 +141,28 @@ const initialCards = [
 // функция создания элемента карточки
 function createCardEl(el) {
     const card = cardTemplate.cloneNode(true)
-    card.querySelector('.cards__info').textContent = el.name
-    card.querySelector('.cards__image').src = el.link
+    const picture =  getEl('.cards__image', card)
+    const info = getEl('.cards__info', card)
+    const btnLike = getEl('.cards__button-like', card)
+    const itemDelEl = getEl('.cards__deleate', card)
+
+    info.textContent = el.name
+    picture.src = el.link
+    picture.alt = el.name
+
     // добавляем лайк к карточке
-    const likeBtnEl = card.querySelector('.cards__button-like')
-    likeBtnEl.addEventListener('click', function (e) {
+    btnLike.addEventListener('click', function (e) {
         e.target.classList.toggle('cards__button-like_active')
     })
     // слушатель удаления карточки с страницы
-    const itemDelEl = card.querySelector('.cards__deleate')
     itemDelEl.addEventListener('click', function () {
         itemDelEl.closest('.cards__item').remove()
     })
     // слушатель открытия картинки
-    const imageEl = card.querySelector('.cards__image')
-    imageEl.addEventListener('click', function () {
-        popupPicture.querySelector('.popup__picture-name').textContent = el.name
-        const picture = popupPicture.querySelector('.popup__image')
-        picture.src = el.link
-        picture.alt = el.name
+    picture.addEventListener('click', function () {
+        popupPictureName.textContent = el.name
+        popupPictureImage.src = el.link
+        popupPictureImage.alt = el.name
         openPopup(popupPicture)
     })
     return card
