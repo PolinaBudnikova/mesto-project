@@ -1,7 +1,6 @@
 .form__save-button {
     width: 100%;
     height: 46px;
-    border: none;
     margin-top: 45px;
     padding: 0;
     background-color: #000;
@@ -11,6 +10,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    border: 1px solid black;
 }
 
 .form__save-button:hover {
@@ -19,7 +19,7 @@
 
 @media screen and (min-width: 1280px) {
     .form__save-button {
-     margin-top: 48px;
+     margin-top: 31px;
      height: 50px;
      font-size: 18px;
      line-height: 22px;

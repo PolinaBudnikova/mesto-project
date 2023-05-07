@@ -6,6 +6,10 @@
     font-size: 14px;
     line-height: 17px;
     transition: border-bottom .3s;
+    position: relative;
+}
+.form__input:last-child {
+    margin-bottom: 0;
 }
 
 .form__input:focus {
@@ -16,3 +20,4 @@
 .form__input::placeholder {
     color: #C4C4C4;
 }
+
