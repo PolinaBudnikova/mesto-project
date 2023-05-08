@@ -1,4 +1,4 @@
-import { btnLikeSelector, cardsBtnLikeActiveSelector, cardsItemSelector, infoSelector, itemDelElSelector, pictureSelector } from './constants'
+import { btnLikeSelector, cardsBtnLikeActiveSelector, cardsItemSelector, infoSelector, itemDelElSelector, pictureSelector } from './utils'
 
 import { getEl } from './utils'
 
@@ -29,10 +29,4 @@ export function createCardEl(el, tmpl, onClick) {
     return card
 }
 
-// Добавляем карточки на страницу
-export function loadCards ({ cards, list, tmpl, onClickCard }) {
-    cards.forEach(function (card) {
-        const cardEl = createCardEl(card, tmpl, onClickCard)
-        list.append(cardEl)
-    })
-}
+
