@@ -112,8 +112,6 @@ function setInputsValue({ name, job }) {
 
 // Функция открытия картинки
 function openPicture(el) {
-    document.addEventListener('keydown', closeByEsc)
-    popupPicture.addEventListener('click', closeByOverlay)
     popupPictureName.textContent = el.name
     popupPictureImage.src = el.link
     popupPictureImage.alt = el.name

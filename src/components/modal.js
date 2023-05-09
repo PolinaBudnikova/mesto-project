@@ -2,18 +2,24 @@ import { getEl, popupContainerPicture, popupOpenedSelector } from "./utils"
 
 // Функция открытия и закрытия у popup
 export function openPopup(popup) {
+    document.addEventListener('keydown', closeByEsc)
+    popup.addEventListener('click', closeByOverlay)
     popup.classList.add(popupOpenedSelector)
 }
 
 // Функция закрытия попапа
 function closePopup(popup) {
+    document.removeEventListener('keydown', closeByEsc)
+    popup.removeEventListener('click', closeByOverlay)
     popup.classList.remove(popupOpenedSelector)
 }
 
 // Закрытие формы по нажатию на Esc
 export function closeByEsc(evt) {
-    const modal = getEl(`.${popupOpenedSelector}`)
-    if (evt.key === 'Escape' && modal) closePopup(modal)
+    if (evt.key === 'Escape') {
+        const modal = getEl(`.${popupOpenedSelector}`)
+        modal && closePopup(modal)
+    }
 }
 
 // Закрытик формы по нажатию на оверлей
@@ -32,8 +38,6 @@ export function initPopup({
 }) {
     // Если есть элемент открытия попапа, подключаем событие клика
     elOpen && elOpen.addEventListener('click', function () {
-        document.addEventListener('keydown', closeByEsc)
-        popup.addEventListener('click', closeByOverlay)
         openPopup(popup)
         onOpen && onOpen()
     })
@@ -47,8 +51,6 @@ export function initPopup({
 
     // Подключаем событие закрытия попапа
     elClose.addEventListener('click', function () {
-        document.removeEventListener('keydown', closeByEsc)
-        popup.removeEventListener('click', closeByOverlay)
         closePopup(popup)
     })
 }
